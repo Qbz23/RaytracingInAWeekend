@@ -1,4 +1,5 @@
 #include "RayFunctions.h"
+#include "Helpers.h"
 #include <limits>
 
 Vec3 RayFunctions::BackgroundColor(const Ray& ray)
@@ -55,9 +56,12 @@ float RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
 Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld)
 {
     HitRecord hr;
-    if (pWorld->Hit(r, 0.0f, std::numeric_limits<float>::max(), hr))
+    if (pWorld->Hit(r, 0.001f, std::numeric_limits<float>::max(), hr))
     {
-        return 0.5f * (1 + hr.normal);
+        // Pick a random direction to bounce towards 
+        Vec3 target = hr.point + hr.normal + Helpers::RandomPointInUnitSphere();
+        // Accumulate 50% of the color of each ray bounce
+        return 0.5f * GetColor(Ray(hr.point, target - hr.point), pWorld);
     }
     else
     {

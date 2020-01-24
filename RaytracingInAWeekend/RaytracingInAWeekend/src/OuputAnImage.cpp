@@ -41,6 +41,8 @@ void OutputAnImage()
                 col += RayFunctions::GetColor(r, pWorld);
             }
             col /= float(ns);
+            // take sqrt to gamma correct 
+            col = Vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
             
             // convert to int 
             const float floatToInt = 255.99f;
