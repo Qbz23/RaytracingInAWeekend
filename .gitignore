@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# visual studio 
+*.db 
+*.opendb 
+*.ipch 
+*.user
