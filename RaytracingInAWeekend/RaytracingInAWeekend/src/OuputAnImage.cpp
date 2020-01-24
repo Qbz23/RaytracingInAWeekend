@@ -1,5 +1,5 @@
 #include "TutorialParts.h"
-
+#include "Vec3.h"
 #include <iostream>
 
 void OutputAnImage()
@@ -17,14 +17,17 @@ void OutputAnImage()
         for (int i = 0; i < nx; ++i)
         {
             // Should be a gradient across R and G
-            float r = float(i) / float(nx);
-            float g = float(j) / float(ny);
-            float b = 0.2f;
+            Vec3 col = Vec3(
+                float(i) / float(nx),
+                float(j) / float(ny),
+                0.2f    
+            );
+            
             // convert to int 
             const float floatToInt = 255.99f;
-            int ir = int(floatToInt * r);
-            int ig = int(floatToInt * g);
-            int ib = int(floatToInt * b);
+            int ir = int(floatToInt * col.R());
+            int ig = int(floatToInt * col.G());
+            int ib = int(floatToInt * col.B());
             // write color 
             std::cout << ir << " " << ig << " " << ib << "\n";
             // Redirect output to file to output

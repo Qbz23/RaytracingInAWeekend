@@ -125,9 +125,11 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\OuputAnImage.cpp" />
+    <ClCompile Include="src\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TutorialParts.h" />
+    <ClInclude Include="src\Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
