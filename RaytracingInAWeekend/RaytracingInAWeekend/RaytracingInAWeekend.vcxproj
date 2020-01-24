@@ -126,11 +126,14 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\OuputAnImage.cpp" />
     <ClCompile Include="src\RayFunctions.cpp" />
+    <ClCompile Include="src\Sphere.cpp" />
     <ClCompile Include="src\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Hittable.h" />
     <ClInclude Include="src\Ray.h" />
     <ClInclude Include="src\RayFunctions.h" />
+    <ClInclude Include="src\Sphere.h" />
     <ClInclude Include="src\TutorialParts.h" />
     <ClInclude Include="src\Vec3.h" />
   </ItemGroup>

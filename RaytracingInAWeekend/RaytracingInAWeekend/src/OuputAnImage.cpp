@@ -1,6 +1,7 @@
 #include "TutorialParts.h"
 #include "Ray.h"
 #include "RayFunctions.h"
+#include "Sphere.h"
 #include <iostream>
 
 void OutputAnImage()
@@ -16,6 +17,12 @@ void OutputAnImage()
     Vec3 spanVertical(0.0f, 2.0f, 0.0f);
     Vec3 origin(0.0f, 0.0f, 0.0f);
 
+    const int kNumObjects = 2;
+    Hittable* list[kNumObjects];
+    list[0] = new Sphere(Vec3(0, 0, -1), 0.5f);
+    list[1] = new Sphere(Vec3(0, -100.5f, -1), 100.0f);
+    Hittable* pWorld = new HittableList(list, 2);
+
     // From top to bottom
     for (int j = ny - 1; j >= 0; --j)
     {
@@ -25,9 +32,8 @@ void OutputAnImage()
             float u = float(i) / float(nx);
             float v = float(j) / float(ny);
 
-            // should be a light blue/white gradient
             Ray r(origin, botLeft + u * spanHorizontal + v * spanVertical);
-            Vec3 col = RayFunctions::TestSphere(r);
+            Vec3 col = RayFunctions::TestWorld(r, pWorld);
             
             // convert to int 
             const float floatToInt = 255.99f;
@@ -39,4 +45,11 @@ void OutputAnImage()
             // Redirect output to file to output
         }
     }
+
+    // cleanup
+    for (int i = 0; i < kNumObjects; ++i)
+    {
+        delete list[i];
+    }
+    delete pWorld;
 }

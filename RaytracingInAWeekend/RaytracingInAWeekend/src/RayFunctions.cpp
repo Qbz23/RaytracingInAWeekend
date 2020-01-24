@@ -1,4 +1,5 @@
 #include "RayFunctions.h"
+#include <limits>
 
 Vec3 RayFunctions::BackgroundColor(const Ray& ray)
 {
@@ -31,28 +32,32 @@ Vec3 RayFunctions::BackgroundColor(const Ray& ray)
 //      a = Dot(B, B)
 //      b = 2 * Dot(B, A-C)
 //      c = Dot((A-C), (A-C)) - R^2
-// Below function solves that quadratic equation, returning true if the resulting 
-// discriminant > 0, which means the ray sphere intersection eqn has 2 solutions 
-// which implies the ray intersected the sphere
+// Below function solves that quadratic equation, returning the T value 
+// of the ray's first intersection with the sphere or -1 if no intersection
 //
-bool RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
+float RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
 {
     Vec3 oc = r.Origin() - center;
     float a = Dot(r.Direction(), r.Direction());
     float b = 2.0f * Dot(r.Direction(), oc);
     float c = Dot(oc, oc) - radius * radius;
     float discriminant = b * b - 4 * a * c;
-    return (discriminant > 0);
+    if (discriminant < 0)
+    {
+        return -1.0f;
+    }
+    else
+    {
+        return (-b - sqrt(discriminant)) / (2.0f * a);
+    }
 }
 
-Vec3 RayFunctions::TestSphere(const Ray& r)
+Vec3 RayFunctions::TestWorld(const Ray& r, Hittable* pWorld)
 {
-    if (HitSphere(
-        Vec3(0, 0, -1), // center
-        0.5f,           // radius
-        r))             // ray
+    HitRecord hr;
+    if (pWorld->Hit(r, 0.0f, std::numeric_limits<float>::max(), hr))
     {
-        return Vec3(1.0f, 0.0f, 0.0f);
+        return 0.5f * (1 + hr.normal);
     }
     else
     {
