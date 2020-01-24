@@ -24,12 +24,21 @@
     <ClCompile Include="src\Vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\RayFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TutorialParts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RayFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

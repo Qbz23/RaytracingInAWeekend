@@ -39,7 +39,7 @@ public:
     inline float Length() const;
     inline float SquaredLength() const;
     inline void Normalize(); // inplace version
-    inline Vec3 GetNormalized() const; // return a normalized copy version
+    Vec3 GetNormalized() const; // return a normalized copy version
     inline float Dot(const Vec3& other) const;
     inline Vec3 Cross(const Vec3& other) const;
 
@@ -48,16 +48,16 @@ public:
     friend Vec3 Cross(const Vec3& lhs, const Vec3& rhs);
 
     // binary ops 
-    friend inline Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
-    friend inline Vec3 operator-(const Vec3& lhs, const Vec3& rhs);
-    friend inline Vec3 operator*(const Vec3& lhs, const Vec3& rhs);
-    friend inline Vec3 operator/(const Vec3& lhs, const Vec3& rhs);
-    friend inline Vec3 operator+(const Vec3& lhs, float rhs);
-    friend inline Vec3 operator+(float lhs, const Vec3& rhs);
-    friend inline Vec3 operator-(const Vec3& lhs, float rhs);
-    friend inline Vec3 operator*(const Vec3& lhs, float rhs);
-    friend inline Vec3 operator*(float lhs, const Vec3& rhs);
-    friend inline Vec3 operator/(const Vec3& lhs, float rhs);
+    friend Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
+    friend Vec3 operator-(const Vec3& lhs, const Vec3& rhs);
+    friend Vec3 operator*(const Vec3& lhs, const Vec3& rhs);
+    friend Vec3 operator/(const Vec3& lhs, const Vec3& rhs);
+    friend Vec3 operator+(const Vec3& lhs, float rhs);
+    friend Vec3 operator+(float lhs, const Vec3& rhs);
+    friend Vec3 operator-(const Vec3& lhs, float rhs);
+    friend Vec3 operator*(const Vec3& lhs, float rhs);
+    friend Vec3 operator*(float lhs, const Vec3& rhs);
+    friend Vec3 operator/(const Vec3& lhs, float rhs);
 
     // in/out ops
     friend std::ostream& operator<<(std::ostream& os, Vec3& v);

@@ -66,7 +66,7 @@ inline void Vec3::Normalize()
     (*this) *= k;
 }
 
-inline Vec3 Vec3::GetNormalized() const
+Vec3 Vec3::GetNormalized() const
 {
     float k = 1.0f / Length();
     return k * (*this);
@@ -98,7 +98,7 @@ Vec3 Cross(const Vec3& lhs, const Vec3& rhs)
     return lhs.Cross(rhs);
 }
 
-inline Vec3 operator+(const Vec3& lhs, const Vec3& rhs)
+Vec3 operator+(const Vec3& lhs, const Vec3& rhs)
 {
     return Vec3(
         lhs.m_Data[0] + rhs.m_Data[0],
@@ -107,7 +107,7 @@ inline Vec3 operator+(const Vec3& lhs, const Vec3& rhs)
     );
 }
 
-inline Vec3 operator-(const Vec3& lhs, const Vec3& rhs)
+Vec3 operator-(const Vec3& lhs, const Vec3& rhs)
 {
     return Vec3(
         lhs.m_Data[0] - rhs.m_Data[0],
@@ -116,7 +116,7 @@ inline Vec3 operator-(const Vec3& lhs, const Vec3& rhs)
     );
 }
 
-inline Vec3 operator*(const Vec3& lhs, const Vec3& rhs)
+Vec3 operator*(const Vec3& lhs, const Vec3& rhs)
 {
     return Vec3(
         lhs.m_Data[0] * rhs.m_Data[0],
@@ -125,7 +125,7 @@ inline Vec3 operator*(const Vec3& lhs, const Vec3& rhs)
     );
 }
 
-inline Vec3 operator/(const Vec3& lhs, const Vec3& rhs)
+Vec3 operator/(const Vec3& lhs, const Vec3& rhs)
 {
     return Vec3(
         lhs.m_Data[0] / rhs.m_Data[0],
@@ -134,34 +134,50 @@ inline Vec3 operator/(const Vec3& lhs, const Vec3& rhs)
     );
 }
 
-inline Vec3 operator+(const Vec3& lhs, float rhs)
+Vec3 operator+(const Vec3& lhs, float rhs)
 {
-    return lhs + rhs;
+    return Vec3(
+        lhs.m_Data[0] + rhs,
+        lhs.m_Data[1] + rhs,
+        lhs.m_Data[2] + rhs
+    );
 }
 
-inline Vec3 operator+(float lhs, const Vec3& rhs)
+Vec3 operator+(float lhs, const Vec3& rhs)
 {
     return rhs + lhs;
 }
 
-inline Vec3 operator-(const Vec3& lhs, float rhs)
+Vec3 operator-(const Vec3& lhs, float rhs)
 {
-    return lhs - rhs;
+    return Vec3(
+        lhs.m_Data[0] - rhs,
+        lhs.m_Data[1] - rhs,
+        lhs.m_Data[2] - rhs
+    );
 }
 
-inline Vec3 operator*(const Vec3& lhs, float rhs)
+Vec3 operator*(const Vec3& lhs, float rhs)
 {
-    return lhs * rhs;
+    return Vec3(
+        lhs.m_Data[0] * rhs,
+        lhs.m_Data[1] * rhs,
+        lhs.m_Data[2] * rhs
+    );
 }
 
-inline Vec3 operator*(float lhs, const Vec3& rhs)
+Vec3 operator*(float lhs, const Vec3& rhs)
 {
     return rhs * lhs;
 }
 
-inline Vec3 operator/(const Vec3& lhs, float rhs)
+Vec3 operator/(const Vec3& lhs, float rhs)
 {
-    return lhs / rhs;
+    return Vec3(
+        lhs.m_Data[0] / rhs,
+        lhs.m_Data[1] / rhs,
+        lhs.m_Data[2] / rhs
+    );
 }
 
 std::ostream& operator<<(std::ostream& os, Vec3& v)
