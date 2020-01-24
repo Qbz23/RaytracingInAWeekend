@@ -130,6 +130,8 @@
     <ClCompile Include="src\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\Helpers.h" />
     <ClInclude Include="src\Hittable.h" />
     <ClInclude Include="src\Ray.h" />
     <ClInclude Include="src\RayFunctions.h" />

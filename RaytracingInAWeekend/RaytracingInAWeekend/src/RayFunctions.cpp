@@ -52,7 +52,7 @@ float RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
     }
 }
 
-Vec3 RayFunctions::TestWorld(const Ray& r, Hittable* pWorld)
+Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld)
 {
     HitRecord hr;
     if (pWorld->Hit(r, 0.0f, std::numeric_limits<float>::max(), hr))

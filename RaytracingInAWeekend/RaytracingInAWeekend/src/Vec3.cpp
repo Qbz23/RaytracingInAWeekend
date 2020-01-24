@@ -1,6 +1,6 @@
 #include "Vec3.h"
 
-inline Vec3& Vec3::operator+=(const Vec3& v2)
+Vec3& Vec3::operator+=(const Vec3& v2)
 {
     m_Data[0] += v2.m_Data[0];
     m_Data[1] += v2.m_Data[1];
@@ -8,7 +8,7 @@ inline Vec3& Vec3::operator+=(const Vec3& v2)
     return *this;
 }
 
-inline Vec3& Vec3::operator-=(const Vec3& v2)
+Vec3& Vec3::operator-=(const Vec3& v2)
 {
     m_Data[0] -= v2.m_Data[0];
     m_Data[1] -= v2.m_Data[1];
@@ -16,7 +16,7 @@ inline Vec3& Vec3::operator-=(const Vec3& v2)
     return *this;
 }
 
-inline Vec3& Vec3::operator*=(const Vec3& v2)
+Vec3& Vec3::operator*=(const Vec3& v2)
 {
     m_Data[0] *= v2.m_Data[0];
     m_Data[1] *= v2.m_Data[1];
@@ -24,7 +24,7 @@ inline Vec3& Vec3::operator*=(const Vec3& v2)
     return *this;
 }
 
-inline Vec3& Vec3::operator/=(const Vec3& v2)
+Vec3& Vec3::operator/=(const Vec3& v2)
 {
     m_Data[0] /= v2.m_Data[0];
     m_Data[1] /= v2.m_Data[1];
@@ -32,7 +32,7 @@ inline Vec3& Vec3::operator/=(const Vec3& v2)
     return *this;
 }
 
-inline Vec3& Vec3::operator*=(const float t)
+Vec3& Vec3::operator*=(const float t)
 {
     m_Data[0] *= t;
     m_Data[1] *= t;
@@ -40,7 +40,7 @@ inline Vec3& Vec3::operator*=(const float t)
     return *this;
 }
 
-inline Vec3& Vec3::operator/=(const float t)
+Vec3& Vec3::operator/=(const float t)
 {
     m_Data[0] /= t;
     m_Data[1] /= t;

@@ -28,12 +28,12 @@ public:
     inline float& operator[](int i) { return m_Data[i]; }
 
     // * equals ops 
-    inline Vec3& operator+=(const Vec3& v2);
-    inline Vec3& operator-=(const Vec3& v2);
-    inline Vec3& operator*=(const Vec3& v2);
-    inline Vec3& operator/=(const Vec3& v2);
-    inline Vec3& operator*=(const float t);
-    inline Vec3& operator/=(const float t);
+    Vec3& operator+=(const Vec3& v2);
+    Vec3& operator-=(const Vec3& v2);
+    Vec3& operator*=(const Vec3& v2);
+    Vec3& operator/=(const Vec3& v2);
+    Vec3& operator*=(const float t);
+    Vec3& operator/=(const float t);
 
     // other helpers 
     inline float Length() const;
