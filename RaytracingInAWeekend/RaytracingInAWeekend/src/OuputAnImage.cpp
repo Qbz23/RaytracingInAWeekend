@@ -27,7 +27,7 @@ void OutputAnImage()
 
             // should be a light blue/white gradient
             Ray r(origin, botLeft + u * spanHorizontal + v * spanVertical);
-            Vec3 col = RayFunctions::BackgroundColor(r);
+            Vec3 col = RayFunctions::TestSphere(r);
             
             // convert to int 
             const float floatToInt = 255.99f;
