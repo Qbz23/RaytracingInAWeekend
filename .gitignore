@@ -36,3 +36,10 @@
 *.opendb 
 *.ipch 
 *.user
+*.tlog 
+*.lastbuildstate 
+*.idb 
+*.pdb 
+*.ilk
+*.suo
+*.log

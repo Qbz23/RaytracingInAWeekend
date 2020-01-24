@@ -1,5 +1,6 @@
-#include <iostream>
+#include "TutorialParts.h"
 
 int main()
 {
+    OutputAnImage();
 }
