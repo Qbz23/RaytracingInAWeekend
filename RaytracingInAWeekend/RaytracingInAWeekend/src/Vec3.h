@@ -42,6 +42,7 @@ public:
     Vec3 GetNormalized() const; // return a normalized copy version
     inline float Dot(const Vec3& other) const;
     inline Vec3 Cross(const Vec3& other) const;
+    Vec3 Reflect(const Vec3& other);
 
     // might be useful to have this other calling convention
     friend float Dot(const Vec3& lhs, const Vec3& rhs);

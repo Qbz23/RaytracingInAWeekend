@@ -20,6 +20,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
             hr.t = t;
             hr.point = r.Point(t);
             hr.normal = (hr.point - m_Center) / m_Radius;
+            hr.pMaterial = m_pMaterial;
             return true;
         }
         // If t out of range, try other solution (+ sqrt)
@@ -29,6 +30,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
             hr.t = t;
             hr.point = r.Point(t);
             hr.normal = (hr.point - m_Center) / m_Radius;
+            hr.pMaterial = m_pMaterial;
             return true;
         }
     }

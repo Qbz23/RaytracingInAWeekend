@@ -9,5 +9,5 @@ public:
 
     static float HitSphere(const Vec3& center, float radius, const Ray& r);
     
-    static Vec3 GetColor(const Ray& r, Hittable* pWorld);
+    static Vec3 GetColor(const Ray& r, Hittable* pWorld, int depth);
 };

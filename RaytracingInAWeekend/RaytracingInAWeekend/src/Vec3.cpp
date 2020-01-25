@@ -88,6 +88,11 @@ inline Vec3 Vec3::Cross(const Vec3& other) const
     );
 }
 
+Vec3 Vec3::Reflect(const Vec3& other)
+{
+    return (*this) - 2 * Dot(other) * other;
+}
+
 float Dot(const Vec3& lhs, const Vec3& rhs)
 {
     return lhs.Dot(rhs);

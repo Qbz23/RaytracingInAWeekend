@@ -15,11 +15,13 @@ void OutputAnImage()
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    const int kNumObjects = 2;
+    const int kNumObjects = 4;
     Hittable* list[kNumObjects];
-    list[0] = new Sphere(Vec3(0, 0, -1), 0.5f);
-    list[1] = new Sphere(Vec3(0, -100.5f, -1), 100.0f);
-    Hittable* pWorld = new HittableList(list, 2);
+    list[0] = new Sphere(Vec3(0, 0, -1), 0.5f, new Lambertian(Vec3(0.8f, 0.3f, 0.3f)));
+    list[1] = new Sphere(Vec3(0, -100.5f, -1), 100.0f, new Lambertian(Vec3(0.8f, 0.8f, 0.0f)));
+    list[2] = new Sphere(Vec3(1, 0, -1), 0.5, new Metal(Vec3(0.8f, 0.6f, 0.2f), 1.0f));
+    list[3] = new Sphere(Vec3(-1, 0, -1), 0.5, new Metal(Vec3(0.8f, 0.8f, 0.8f), 0.3f));
+    Hittable* pWorld = new HittableList(list, kNumObjects);
 
     Camera cam;
     // From top to bottom
@@ -38,7 +40,7 @@ void OutputAnImage()
                 float u = float(i + Helpers::RandomFloat()) / float(nx);
                 float v = float(j + Helpers::RandomFloat()) / float(ny);
                 Ray r = cam.GetRay(u, v);
-                col += RayFunctions::GetColor(r, pWorld);
+                col += RayFunctions::GetColor(r, pWorld, 0);
             }
             col /= float(ns);
             // take sqrt to gamma correct 

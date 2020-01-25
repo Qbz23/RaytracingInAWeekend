@@ -1,11 +1,14 @@
 #pragma once
 #include "Ray.h"
 
+class Material;
+
 struct HitRecord
 {
     float t;
     Vec3 point;
     Vec3 normal;
+    Material* pMaterial;
 };
 
 class Hittable
