@@ -55,3 +55,58 @@ private:
     Vec3 m_Albedo;
     float m_Fuzz;
 };
+
+class Dielectric : public Material
+{
+public:
+    Dielectric(float ri) : m_RefractionIndex(ri) {}
+
+    virtual bool Scatter(const Ray& rIn, const HitRecord& hr,
+        Vec3& attenuation, Ray& scattered) const override
+    {
+        Vec3 normal;
+        Vec3 reflected = rIn.Direction().Reflect(hr.normal);
+        float niOverNt;
+        attenuation = Vec3(1.0f, 1.0f, 1.0f);
+        Vec3 refracted;
+
+        float reflectProb;
+        float cosine;
+
+        if (rIn.Direction().Dot(hr.normal) > 0.0f)
+        {
+            normal = -hr.normal;
+            niOverNt = m_RefractionIndex;
+            cosine = m_RefractionIndex * rIn.Direction().Dot(hr.normal) / rIn.Direction().Length();
+        }
+        else
+        {
+            normal = hr.normal;
+            niOverNt = 1.0f / m_RefractionIndex;
+            cosine = -rIn.Direction().Dot(hr.normal) / rIn.Direction().Length();
+        }
+
+        if (rIn.Direction().Refract(normal, niOverNt, refracted))
+        {
+            reflectProb = Helpers::Schlick(cosine, m_RefractionIndex);
+        }
+        else
+        {
+            reflectProb = 1.0f;
+        }
+
+        if (Helpers::RandomFloat() < reflectProb)
+        {
+            scattered = Ray(hr.point, reflected);
+        }
+        else 
+        {
+            scattered = Ray(hr.point, refracted);
+        }
+
+        return true;
+    }
+
+private:
+    float m_RefractionIndex;
+};

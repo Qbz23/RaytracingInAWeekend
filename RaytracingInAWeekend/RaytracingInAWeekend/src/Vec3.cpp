@@ -93,6 +93,22 @@ Vec3 Vec3::Reflect(const Vec3& other)
     return (*this) - 2 * Dot(other) * other;
 }
 
+bool Vec3::Refract(const Vec3& normal, float niOverNt, Vec3& refracted)
+{
+    Vec3 uv = GetNormalized();
+    float dt = uv.Dot(normal);
+    float discriminant = 1.0f - niOverNt * niOverNt * (1.0f - dt * dt);
+    if (discriminant > 0.0f)
+    {
+        refracted = niOverNt * (uv - normal * dt) - normal * sqrt(discriminant);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 float Dot(const Vec3& lhs, const Vec3& rhs)
 {
     return lhs.Dot(rhs);

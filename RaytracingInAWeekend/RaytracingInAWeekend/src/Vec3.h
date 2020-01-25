@@ -21,7 +21,7 @@ public:
 
     // unary +- 
     inline const Vec3& operator+() const { return *this; }
-    inline const Vec3& operator-() const { return Vec3(-m_Data[0], -m_Data[1], -m_Data[2]); }
+    inline Vec3 operator-() const { return Vec3(-m_Data[0], -m_Data[1], -m_Data[2]); }
 
     // subscript
     inline float operator[](int i) const { return m_Data[i]; }
@@ -43,6 +43,7 @@ public:
     inline float Dot(const Vec3& other) const;
     inline Vec3 Cross(const Vec3& other) const;
     Vec3 Reflect(const Vec3& other);
+    bool Refract(const Vec3& normal, float niOverNt, Vec3& refracted);
 
     // might be useful to have this other calling convention
     friend float Dot(const Vec3& lhs, const Vec3& rhs);

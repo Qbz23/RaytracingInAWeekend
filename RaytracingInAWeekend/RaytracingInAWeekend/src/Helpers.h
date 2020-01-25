@@ -19,4 +19,11 @@ public:
         } while (p.SquaredLength() >= 1.0f);
         return p;
     }
+
+    static float Schlick(float cos, float refractionIndex)
+    {
+        float r0 = (1.0f - refractionIndex) / (1.0f + refractionIndex);
+        r0 = r0 * r0;
+        return r0 + (1.0f - r0) * pow((1 - cos), 5);
+    }
 };
