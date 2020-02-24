@@ -26,6 +26,13 @@ class HittableList : public Hittable
 public:
     HittableList() {}
     HittableList(Hittable** list, int size) : m_List(list), m_Size(size) {}
+    ~HittableList()
+    {
+        for (int i = 0; i < m_Size; ++i)
+        {
+            delete m_List[i];
+        }
+    }
 
     virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const
     {

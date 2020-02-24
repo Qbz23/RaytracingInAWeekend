@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "Helpers.h"
 #include "Camera.h"
+#include "RandomScene.h"
 #include <iostream>
 
 void OutputAnImage()
@@ -15,20 +16,12 @@ void OutputAnImage()
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    const int kNumObjects = 5;
-    Hittable* list[kNumObjects];
-    list[0] = new Sphere(Vec3(0, 0, -1), 0.5f, new Lambertian(Vec3(0.1f, 0.2f, 0.5f)));
-    list[1] = new Sphere(Vec3(0, -100.5f, -1), 100.0f, new Lambertian(Vec3(0.8f, 0.8f, 0.0f)));
-    list[2] = new Sphere(Vec3(1, 0, -1), 0.5f, new Metal(Vec3(0.8f, 0.6f, 0.2f), 0.0f));
-    // negative normal for dielectric makes it like a bubble with normal pointed inward
-    list[3] = new Sphere(Vec3(-1, 0, -1), 0.5f, new Dielectric(1.5f));
-    list[4] = new Sphere(Vec3(-1, 0, -1), -0.45f, new Dielectric(1.5f));
-    Hittable* pWorld = new HittableList(list, kNumObjects);
+    Hittable* pWorld = RandomScene();
 
-    Vec3 lookFrom(3, 3, 2);
-    Vec3 lookAt(0, 0, -1);
-    float distanceToFocus = (lookFrom - lookAt).Length();
-    float aperture = 2.0f;
+    Vec3 lookFrom(13, 2, 3);
+    Vec3 lookAt(0, 0, 0);
+    float distanceToFocus = 10.0f;
+    float aperture = 0.1f;
     Camera cam = Camera(
         lookFrom,               // lookFrom
         lookAt,                 // lookAt
@@ -73,9 +66,5 @@ void OutputAnImage()
     }
 
     // cleanup
-    for (int i = 0; i < kNumObjects; ++i)
-    {
-        delete list[i];
-    }
     delete pWorld;
 }
