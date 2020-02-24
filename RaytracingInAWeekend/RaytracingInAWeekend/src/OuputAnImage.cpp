@@ -10,7 +10,7 @@ void OutputAnImage()
 {
     int nx = 200;
     int ny = 100;
-    int ns = 100; // num samples
+    int ns = 500; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";

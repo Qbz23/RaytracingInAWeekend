@@ -57,7 +57,7 @@ float RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
 Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld, int depth)
 {
     HitRecord hr;
-    if (pWorld->Hit(r, 0.001f, std::numeric_limits<float>::max(), hr))
+    if (pWorld->Hit(r, 0.01f, std::numeric_limits<float>::max(), hr))
     {
         Ray scattered; 
         Vec3 attenuation;
