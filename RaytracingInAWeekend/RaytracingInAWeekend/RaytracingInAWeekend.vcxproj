@@ -141,6 +141,7 @@
     <ClInclude Include="src\Ray.h" />
     <ClInclude Include="src\RayFunctions.h" />
     <ClInclude Include="src\Sphere.h" />
+    <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TutorialParts.h" />
     <ClInclude Include="src\Vec3.h" />
   </ItemGroup>

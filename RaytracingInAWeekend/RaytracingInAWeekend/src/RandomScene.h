@@ -13,7 +13,16 @@ Hittable* RandomScene()
         Vec3(0, -1000, 0),
         Vec3(0, -1000, 0),
         1000,
-        new Lambertian(Vec3(0.5f, 0.5f, 0.5f))
+        new Lambertian(
+            new CheckerTexture(
+                new ConstantTexture(
+                    Vec3(0.2f, 0.3f, 0.1f)
+                ),
+                new ConstantTexture(
+                    Vec3(0.9f, 0.9f, 0.9f)
+                )
+            )
+        )
     );
 
     int i = 1;
@@ -38,14 +47,16 @@ Hittable* RandomScene()
                             // This creates the motion blurred spheres that look 
                             // like theyre falling. Comment out and replace with 
                             // just "center" below to have no motion blur
-                            center + Vec3(0, 0.5f * Helpers::RandomFloat(), 0.0f),
-                            //center,
+                            //center + Vec3(0, 0.5f * Helpers::RandomFloat(), 0.0f),
+                            center,
                             0.2f,
                             new Lambertian(
-                                Vec3(
-                                    Helpers::RandomFloat() * Helpers::RandomFloat(),
-                                    Helpers::RandomFloat() * Helpers::RandomFloat(),
-                                    Helpers::RandomFloat() * Helpers::RandomFloat()
+                                new ConstantTexture(
+                                    Vec3(
+                                        Helpers::RandomFloat() * Helpers::RandomFloat(),
+                                        Helpers::RandomFloat() * Helpers::RandomFloat(),
+                                        Helpers::RandomFloat() * Helpers::RandomFloat()
+                                    )
                                 )
                             )
                         );
@@ -92,8 +103,8 @@ Hittable* RandomScene()
                         Vec3(-4.0f, 1.0f, 0.0f),
                         1.0f, 
                         new Lambertian(
-                            Vec3(
-                                0.4f, 0.2f, 0.1f
+                            new ConstantTexture(
+                                Vec3(0.4f, 0.2f, 0.1f)
                             )
                         )
                 );

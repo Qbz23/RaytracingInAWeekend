@@ -2,6 +2,7 @@
 #include "Ray.h"
 #include "Hittable.h"
 #include "Helpers.h"
+#include "Texture.h"
 
 class Material
 {
@@ -17,19 +18,19 @@ public:
 class Lambertian : public Material
 {
 public:
-    Lambertian(const Vec3& a) : m_Albedo(a) {}
+    Lambertian(Texture* pA) : m_pAlbedo(pA) {}
 
     virtual bool Scatter(const Ray& rIn, const HitRecord& hr,
         Vec3& attenuation, Ray& scattered) const override
     {
         Vec3 target = hr.point + hr.normal + Helpers::RandomPointInUnitSphere();
         scattered = Ray(hr.point, target - hr.point, rIn.Time());
-        attenuation = m_Albedo;
+        attenuation = m_pAlbedo->Value(0.0f, 0.0f, hr.point);
         return true;
     }
 
 private:
-    Vec3 m_Albedo;
+    Texture* m_pAlbedo;
 };
 
 class Metal : public Material
