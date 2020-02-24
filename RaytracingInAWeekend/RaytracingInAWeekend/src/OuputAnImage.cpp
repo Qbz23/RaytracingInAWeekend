@@ -29,7 +29,9 @@ void OutputAnImage()
         20.0f,                  // vFov
         float(nx) / float(ny),  // aspect
         aperture,               // aperture
-        distanceToFocus         // distance to focus
+        distanceToFocus,        // distance to focus
+        0.0f,                   // t0
+        1.0f                    // t1
     );
 
     // From top to bottom

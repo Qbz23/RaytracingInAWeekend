@@ -23,7 +23,7 @@ public:
         Vec3& attenuation, Ray& scattered) const override
     {
         Vec3 target = hr.point + hr.normal + Helpers::RandomPointInUnitSphere();
-        scattered = Ray(hr.point, target - hr.point);
+        scattered = Ray(hr.point, target - hr.point, rIn.Time());
         attenuation = m_Albedo;
         return true;
     }
@@ -45,7 +45,11 @@ public:
     {
         Vec3 unitDir = rIn.Direction().GetNormalized();
         Vec3 reflected = unitDir.Reflect(hr.normal);
-        scattered = Ray(hr.point, reflected + m_Fuzz * Helpers::RandomPointInUnitSphere());
+        scattered = Ray(
+            hr.point,
+            reflected + m_Fuzz * Helpers::RandomPointInUnitSphere(),
+            rIn.Time()
+        );
         attenuation = m_Albedo;
         return ((scattered.Direction().Dot(hr.normal)) > 0);
     }
@@ -97,11 +101,11 @@ public:
 
         if (Helpers::RandomFloat() < reflectProb)
         {
-            scattered = Ray(hr.point, reflected);
+            scattered = Ray(hr.point, reflected, rIn.Time());
         }
         else 
         {
-            scattered = Ray(hr.point, refracted);
+            scattered = Ray(hr.point, refracted, rIn.Time());
         }
 
         return true;

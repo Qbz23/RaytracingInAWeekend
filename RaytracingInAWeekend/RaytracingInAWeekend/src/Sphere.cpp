@@ -6,7 +6,7 @@
 //
 bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
 {
-    Vec3 oc = r.Origin() - m_Center;
+    Vec3 oc = r.Origin() - Center(r.Time());
     float a = Dot(r.Direction(), r.Direction());
     float b = Dot(r.Direction(), oc);
     float c = Dot(oc, oc) - m_Radius * m_Radius;
@@ -19,7 +19,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
         {
             hr.t = t;
             hr.point = r.Point(t);
-            hr.normal = (hr.point - m_Center) / m_Radius;
+            hr.normal = (hr.point - Center(r.Time())) / m_Radius;
             hr.pMaterial = m_pMaterial;
             return true;
         }
@@ -29,7 +29,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
         {
             hr.t = t;
             hr.point = r.Point(t);
-            hr.normal = (hr.point - m_Center) / m_Radius;
+            hr.normal = (hr.point - Center(r.Time())) / m_Radius;
             hr.pMaterial = m_pMaterial;
             return true;
         }

@@ -10,6 +10,7 @@ Hittable* RandomScene()
     
     list[0] = new Sphere(
         Vec3(0, -1000, 0),
+        Vec3(0, -1000, 0),
         1000,
         new Lambertian(Vec3(0.5f, 0.5f, 0.5f))
     );
@@ -33,6 +34,11 @@ Hittable* RandomScene()
                     list[i++] =
                         new Sphere(
                             center,
+                            // This creates the motion blurred spheres that look 
+                            // like theyre falling. Comment out and replace with 
+                            // just "center" below to have no motion blur
+                            center + Vec3(0, 0.5f * Helpers::RandomFloat(), 0.0f),
+                            //center,
                             0.2f,
                             new Lambertian(
                                 Vec3(
@@ -47,6 +53,7 @@ Hittable* RandomScene()
                 {
                     list[i++] =
                         new Sphere(
+                            center,
                             center,
                             0.2f,
                             new Metal(
@@ -64,6 +71,7 @@ Hittable* RandomScene()
                     list[i++] =
                         new Sphere(
                             center,
+                            center,
                             0.2f,
                             new Dielectric(1.5f)
                         );
@@ -74,11 +82,13 @@ Hittable* RandomScene()
 
     list[i++] = new Sphere(
                         Vec3(0.0f, 1.0f, 0.0f), 
+                        Vec3(0.0f, 1.0f, 0.0f),
                         1.0f, 
                         new Dielectric(1.5f)
                 );
     list[i++] = new Sphere(
                         Vec3(-4.0f, 1.0f, 0.0f), 
+                        Vec3(-4.0f, 1.0f, 0.0f),
                         1.0f, 
                         new Lambertian(
                             Vec3(
@@ -88,6 +98,7 @@ Hittable* RandomScene()
                 );
     list[i++] = new Sphere(
                         Vec3(4.0f, 1.0f, 0.0f), 
+                        Vec3(4.0f, 1.0f, 0.0f),
                         1.0f, 
                         new Metal(
                             Vec3(0.7f, 0.6f, 0.5f), 
