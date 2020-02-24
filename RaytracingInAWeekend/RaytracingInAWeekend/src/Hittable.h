@@ -1,5 +1,6 @@
 #pragma once
 #include "Ray.h"
+#include "AABB.h"
 
 class Material;
 
@@ -15,6 +16,7 @@ class Hittable
 {
 public:
     virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const = 0;
+    virtual bool BoundingBox(float t0, float t1, AABB& box) const = 0;
 };
 
 //
@@ -34,7 +36,7 @@ public:
         }
     }
 
-    virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const
+    virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const override
     {
         HitRecord hrTemp;
         bool hitSomething = false;
@@ -51,6 +53,39 @@ public:
         }
 
         return hitSomething;
+    }
+
+    virtual bool BoundingBox(float t0, float t1, AABB& box) const override
+    {
+        if(m_Size < 1)
+        {
+            return false;
+        }
+
+        AABB temp;
+        bool firstTrue = m_List[0]->BoundingBox(t0, t1, temp);
+        if (!firstTrue)
+        {
+            return false;
+        }
+        else
+        {
+            box = temp;
+        }
+
+        for (int i = 1; i < m_Size; ++i)
+        {
+            if (m_List[i]->BoundingBox(t0, t1, temp))
+            {
+                box = AABB::SurroundingBox(box, temp);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 private:

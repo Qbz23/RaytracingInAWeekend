@@ -2,6 +2,7 @@
 
 #include "Hittable.h"
 #include "Sphere.h"
+#include "BVHNode.h"
 
 Hittable* RandomScene()
 {
@@ -105,5 +106,7 @@ Hittable* RandomScene()
                             0.0f)
                 );
 
-    return new HittableList(list, i);
+    // Can return as a hittable List to run without BVH, but much slower
+    //return new HittableList(list, i);
+    return new BVHNode(list, i, 0.0f, 1.0f);
 }

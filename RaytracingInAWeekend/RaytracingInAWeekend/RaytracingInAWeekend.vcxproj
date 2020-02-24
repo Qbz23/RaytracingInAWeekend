@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BVHNode.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\OuputAnImage.cpp" />
     <ClCompile Include="src\RayFunctions.cpp" />
@@ -130,6 +131,8 @@
     <ClCompile Include="src\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AABB.h" />
+    <ClInclude Include="src\BVHNode.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Helpers.h" />
     <ClInclude Include="src\Hittable.h" />

@@ -6,6 +6,13 @@
 class Helpers
 {
 public:
+    // Without worrying about exceptional cases like nan 
+    // can be a bit faster than fmin/max, which matters 
+    // when this will be called hundreds of thousands, 
+    // maybe millions of times
+    static inline float ffMin(float a, float b) { return a < b ? a : b; }
+    static inline float ffMax(float a, float b) { return a > b ? a : b; }
+
     static float RandomFloat()
     {
         return rand() / (RAND_MAX + 1.0f);
