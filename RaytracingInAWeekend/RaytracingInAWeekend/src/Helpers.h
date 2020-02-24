@@ -11,6 +11,16 @@ public:
         return rand() / (RAND_MAX + 1.0f);
     }
 
+    static Vec3 RandomVecInUnitDisk()
+    {
+        Vec3 p;
+        do
+        {
+            p = 2.0*Vec3(Helpers::RandomFloat(), Helpers::RandomFloat(), 0) - Vec3(1, 1, 0);
+        } while (Dot(p, p) >= 1.0);
+        return p;
+    }
+
     static Vec3 RandomPointInUnitSphere()
     {
         Vec3 p;

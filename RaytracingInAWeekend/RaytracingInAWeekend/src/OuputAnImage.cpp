@@ -25,12 +25,18 @@ void OutputAnImage()
     list[4] = new Sphere(Vec3(-1, 0, -1), -0.45f, new Dielectric(1.5f));
     Hittable* pWorld = new HittableList(list, kNumObjects);
 
+    Vec3 lookFrom(3, 3, 2);
+    Vec3 lookAt(0, 0, -1);
+    float distanceToFocus = (lookFrom - lookAt).Length();
+    float aperture = 2.0f;
     Camera cam = Camera(
-        Vec3(-2, 2, 1),         // lookFrom
-        Vec3(0, 0, -1),         // lookAt
+        lookFrom,               // lookFrom
+        lookAt,                 // lookAt
         Vec3(0, 1, 0),          // up
-        45.0f,                  // vFov
-        float(nx) / float(ny)   // aspect
+        20.0f,                  // vFov
+        float(nx) / float(ny),  // aspect
+        aperture,               // aperture
+        distanceToFocus         // distance to focus
     );
 
     // From top to bottom

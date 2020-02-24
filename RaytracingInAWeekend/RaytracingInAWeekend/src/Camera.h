@@ -11,9 +11,10 @@ public:
         m_SpanVertical(0.0f, 2.0f, 0.0f)
     {}
 
-    Camera(Vec3 lookFrom, Vec3 lookAt, Vec3 up, float vFov, float aspect)
+    Camera(Vec3 lookFrom, Vec3 lookAt, Vec3 up, float vFov, float aspect,
+           float aperture, float focusDistance)
     {
-        Vec3 u, v, w;
+        lensRadius = aperture / 2.0f;
         float theta = vFov * PI / 180.0f;
         float halfHeight = tan(theta / 2.0f);
         float halfWidth = aspect * halfHeight;
@@ -21,15 +22,23 @@ public:
         w = (lookFrom - lookAt).GetNormalized();
         u = Cross(up, w).GetNormalized();
         v = Cross(w, u);
-        m_BotLeft = m_Origin - halfWidth * u - halfHeight * v - w;
-        m_SpanHorizontal = 2 * halfWidth * u;
-        m_SpanVertical = 2 * halfHeight * v;
+        m_BotLeft = m_Origin 
+                  - halfWidth * focusDistance * u 
+                  - halfHeight * focusDistance * v 
+                  - focusDistance * w;
+        m_SpanHorizontal = 2 * halfWidth * focusDistance * u;
+        m_SpanVertical = 2 * halfHeight * focusDistance * v;
     }
 
-    Ray GetRay(float u, float v) const 
+    Ray GetRay(float s, float t) const 
     {
-        Vec3 dir = m_BotLeft + u * m_SpanHorizontal + v * m_SpanVertical - m_Origin;
-        return Ray(m_Origin, dir);
+        Vec3 rd = lensRadius * Helpers::RandomVecInUnitDisk();
+        Vec3 offset = u * rd.X() + v * rd.Y();
+        return Ray(
+            m_Origin + offset,
+            m_BotLeft + s * m_SpanHorizontal + t * m_SpanVertical
+                - m_Origin - offset
+        );
     }
 
 private:
@@ -37,4 +46,6 @@ private:
     Vec3 m_BotLeft;
     Vec3 m_SpanHorizontal;
     Vec3 m_SpanVertical;
+    Vec3 u, v, w;
+    float lensRadius;
 };
