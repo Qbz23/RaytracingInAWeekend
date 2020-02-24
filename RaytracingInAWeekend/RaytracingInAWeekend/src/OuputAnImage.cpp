@@ -10,7 +10,7 @@ void OutputAnImage()
 {
     int nx = 200;
     int ny = 100;
-    int ns = 500; // num samples
+    int ns = 100; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
@@ -25,7 +25,14 @@ void OutputAnImage()
     list[4] = new Sphere(Vec3(-1, 0, -1), -0.45f, new Dielectric(1.5f));
     Hittable* pWorld = new HittableList(list, kNumObjects);
 
-    Camera cam;
+    Camera cam = Camera(
+        Vec3(-2, 2, 1),         // lookFrom
+        Vec3(0, 0, -1),         // lookAt
+        Vec3(0, 1, 0),          // up
+        45.0f,                  // vFov
+        float(nx) / float(ny)   // aspect
+    );
+
     // From top to bottom
     for (int j = ny - 1; j >= 0; --j)
     {

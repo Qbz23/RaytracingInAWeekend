@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdlib>
 
+#define PI 3.1415f
+
 class Helpers
 {
 public:
