@@ -7,6 +7,7 @@
 class Material
 {
 public:
+    virtual ~Material() { }
     virtual bool Scatter(
         const Ray& rIn, 
         const HitRecord& hr,
@@ -18,7 +19,15 @@ public:
 class Lambertian : public Material
 {
 public:
+    Lambertian() : m_pAlbedo(nullptr) {}
     Lambertian(Texture* pA) : m_pAlbedo(pA) {}
+    ~Lambertian()
+    { 
+        if (m_pAlbedo) 
+        { 
+            delete m_pAlbedo; 
+        } 
+    }
 
     virtual bool Scatter(const Ray& rIn, const HitRecord& hr,
         Vec3& attenuation, Ray& scattered) const override

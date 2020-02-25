@@ -6,6 +6,7 @@
 class Texture
 {
 public:
+    virtual ~Texture() { }
     virtual Vec3 Value(float u, float v, const Vec3& p) const = 0;
 };
 
@@ -14,6 +15,7 @@ class ConstantTexture : public Texture
 public:
     ConstantTexture() {}
     ConstantTexture(Vec3 c) : m_Color(c) {}
+    ~ConstantTexture() {}
 
     virtual Vec3 Value(float u, float v, const Vec3& p) const override
     {
@@ -29,8 +31,19 @@ private:
 class CheckerTexture : public Texture
 {
 public:
-    CheckerTexture() {}
+    CheckerTexture() : m_pEvenTex(nullptr), m_pOddTex(nullptr) {}
     CheckerTexture(Texture* pt0, Texture* pt1) : m_pEvenTex(pt0), m_pOddTex(pt1) {}
+    ~CheckerTexture() 
+    {
+        if (m_pEvenTex)
+        {
+            delete m_pEvenTex;
+        }
+        if (m_pOddTex)
+        {
+            delete m_pOddTex;
+        }
+    }
 
     virtual Vec3 Value(float u, float v, const Vec3& p) const override
     {

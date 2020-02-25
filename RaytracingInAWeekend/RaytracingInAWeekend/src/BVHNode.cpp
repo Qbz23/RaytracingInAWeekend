@@ -176,6 +176,20 @@ bool BVHNode::Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const
     }
 }
 
+BVHNode::~BVHNode()
+{
+    if (m_pLeft != nullptr)
+    {
+        delete m_pLeft;
+        m_pLeft = nullptr;
+    }
+    if (m_pRight != nullptr)
+    {
+        delete m_pRight;
+        m_pRight = nullptr;
+    }
+}
+
 bool BVHNode::BoundingBox(float t0, float t1, AABB& box) const
 {
     box = m_Box;
