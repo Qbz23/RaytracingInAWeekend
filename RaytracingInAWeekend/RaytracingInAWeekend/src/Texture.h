@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vec3.h"
+#include "Perlin.h"
 
 class Texture
 {
@@ -40,4 +41,22 @@ public:
 private:
     Texture* m_pEvenTex;
     Texture* m_pOddTex;
+};
+
+class NoiseTexture : public Texture
+{
+public:
+    NoiseTexture(float scale) : m_Scale(scale) {}
+    virtual Vec3 Value(float u, float v, const Vec3& p) const override
+    {
+        return Vec3(1, 1, 1) * 0.5f * 
+                (1 + sin(
+                        m_Scale * p.Z() + 10.0f * m_Noise.Turb(p)
+                    )
+                );
+    }
+
+private:
+    Perlin m_Noise;
+    float m_Scale;
 };

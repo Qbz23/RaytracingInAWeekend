@@ -6,7 +6,7 @@
 
 Hittable* RandomScene()
 {
-    int n = 500;
+    int n = 1650;
     Hittable** list = new Hittable*[n + 1];
     
     list[0] = new Sphere(
@@ -26,9 +26,9 @@ Hittable* RandomScene()
     );
 
     int i = 1;
-    for (int a = -11; a < 11; ++a)
+    for (int a = -20; a < 20; ++a)
     {
-        for (int b = -11; b < 11; ++b)
+        for (int b = -20; b < 20; ++b)
         {
             float chooseMat = Helpers::RandomFloat();
             Vec3 center(
@@ -41,6 +41,23 @@ Hittable* RandomScene()
             {
                 if (chooseMat < 0.8f) // diffuse
                 {
+                    Texture* pTex;
+                    if (chooseMat < 0.25f) // have a subset be noise tex
+                    {
+                        // [0, 0.25] -> [0, 1]
+                        pTex = new NoiseTexture(4 * chooseMat);
+                    }
+                    else
+                    {
+                        pTex = new ConstantTexture(
+                            Vec3(
+                                Helpers::RandomFloat() * Helpers::RandomFloat(),
+                                Helpers::RandomFloat() * Helpers::RandomFloat(),
+                                Helpers::RandomFloat() * Helpers::RandomFloat()
+                            )
+                        );
+                    }
+
                     list[i++] =
                         new Sphere(
                             center,
@@ -50,15 +67,7 @@ Hittable* RandomScene()
                             //center + Vec3(0, 0.5f * Helpers::RandomFloat(), 0.0f),
                             center,
                             0.2f,
-                            new Lambertian(
-                                new ConstantTexture(
-                                    Vec3(
-                                        Helpers::RandomFloat() * Helpers::RandomFloat(),
-                                        Helpers::RandomFloat() * Helpers::RandomFloat(),
-                                        Helpers::RandomFloat() * Helpers::RandomFloat()
-                                    )
-                                )
-                            )
+                            new Lambertian(pTex)
                         );
                 }
                 else if (chooseMat < 0.95f) // metal

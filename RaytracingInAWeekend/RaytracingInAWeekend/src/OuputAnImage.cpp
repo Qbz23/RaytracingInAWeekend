@@ -9,9 +9,9 @@
 
 void OutputAnImage()
 {
-    int nx = 400;
-    int ny = 200;
-    int ns = 100; // num samples
+    int nx = 1600;
+    int ny = 800;
+    int ns = 20; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
@@ -26,7 +26,7 @@ void OutputAnImage()
         lookFrom,               // lookFrom
         lookAt,                 // lookAt
         Vec3(0, 1, 0),          // up
-        20.0f,                  // vFov
+        30.0f,                  // vFov
         float(nx) / float(ny),  // aspect
         aperture,               // aperture
         distanceToFocus,        // distance to focus
