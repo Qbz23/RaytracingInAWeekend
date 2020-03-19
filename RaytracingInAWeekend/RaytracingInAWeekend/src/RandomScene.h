@@ -3,6 +3,7 @@
 #include "Hittable.h"
 #include "Sphere.h"
 #include "BVHNode.h"
+#include "ImageTexture.h"
 
 Hittable* RandomScene()
 {
@@ -112,9 +113,7 @@ Hittable* RandomScene()
                         Vec3(-4.0f, 1.0f, 0.0f),
                         1.0f, 
                         new Lambertian(
-                            new ConstantTexture(
-                                Vec3(0.4f, 0.2f, 0.1f)
-                            )
+                            new ImageTexture("Assets/earthmap.jpg")
                         )
                 );
     list[i++] = new Sphere(
@@ -123,7 +122,8 @@ Hittable* RandomScene()
                         1.0f, 
                         new Metal(
                             Vec3(0.7f, 0.6f, 0.5f), 
-                            0.0f)
+                            0.0f
+                        )
                 );
 
     // Can return as a hittable List to run without BVH, but much slower

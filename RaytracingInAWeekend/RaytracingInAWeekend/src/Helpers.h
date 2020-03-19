@@ -45,4 +45,12 @@ public:
         r0 = r0 * r0;
         return r0 + (1.0f - r0) * pow((1 - cos), 5);
     }
+
+    static void GetUv(const Vec3& p, float& outU, float& outV)
+    {
+        float phi = atan2(p.Z(), p.X());
+        float theta = asin(p.Y());
+        outU = 1.0f - (phi + PI) / (2.0f * PI);
+        outV = (theta + PI / 2.0f) / PI;
+    }
 };

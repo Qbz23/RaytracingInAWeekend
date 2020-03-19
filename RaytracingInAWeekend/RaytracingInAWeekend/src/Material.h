@@ -34,7 +34,7 @@ public:
     {
         Vec3 target = hr.point + hr.normal + Helpers::RandomPointInUnitSphere();
         scattered = Ray(hr.point, target - hr.point, rIn.Time());
-        attenuation = m_pAlbedo->Value(0.0f, 0.0f, hr.point);
+        attenuation = m_pAlbedo->Value(hr.u, hr.v, hr.point);
         return true;
     }
 

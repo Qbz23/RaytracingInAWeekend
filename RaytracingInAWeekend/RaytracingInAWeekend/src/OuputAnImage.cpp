@@ -9,16 +9,16 @@
 
 void OutputAnImage()
 {
-    int nx = 1920;
-    int ny = 1080;
-    int ns = 3000; // num samples
+    int nx = 512;
+    int ny = 256;
+    int ns = 25; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
     Hittable* pWorld = RandomScene();
 
-    Vec3 lookFrom(13, 2, 3);
+    Vec3 lookFrom(9.f, 2.5f, 3.5f);
     Vec3 lookAt(0, 0, 0);
     float distanceToFocus = 10.0f;
     float aperture = 0.1f;

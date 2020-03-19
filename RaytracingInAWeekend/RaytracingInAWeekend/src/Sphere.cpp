@@ -21,6 +21,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
             hr.point = r.Point(t);
             hr.normal = (hr.point - Center(r.Time())) / m_Radius;
             hr.pMaterial = m_pMaterial;
+            Helpers::GetUv(hr.point - Center(r.Time()), hr.u, hr.v);
             return true;
         }
         // If t out of range, try other solution (+ sqrt)
@@ -31,6 +32,7 @@ bool Sphere::Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const
             hr.point = r.Point(t);
             hr.normal = (hr.point - Center(r.Time())) / m_Radius;
             hr.pMaterial = m_pMaterial;
+            Helpers::GetUv(hr.point - Center(r.Time()), hr.u, hr.v);
             return true;
         }
     }
