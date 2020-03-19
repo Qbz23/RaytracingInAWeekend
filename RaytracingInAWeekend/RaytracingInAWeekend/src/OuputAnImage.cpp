@@ -5,28 +5,35 @@
 #include "Helpers.h"
 #include "Camera.h"
 #include "RandomScene.h"
+#include "Scenes.h"
 #include <iostream>
 
 void OutputAnImage()
 {
-    int nx = 512;
+    int nx = 256;
     int ny = 256;
-    int ns = 25; // num samples
+    int ns = 500; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    Hittable* pWorld = RandomScene();
+    //Hittable* pWorld = RandomScene();
+    //Hittable* pWorld = SimpleLight();
+    Hittable* pWorld = CornellBox();
 
-    Vec3 lookFrom(9.f, 2.5f, 3.5f);
-    Vec3 lookAt(0, 0, 0);
+    //Vec3 lookFrom(13.f, 2.f, 3.f);
+    //Vec3 lookAt(0, 1, 0);
+    //float distanceToFocus = 10.0f;
+    //float aperture = 0.1f;       
+    Vec3 lookFrom(278, 278, -800);
+    Vec3 lookAt(278, 278, 0);
     float distanceToFocus = 10.0f;
-    float aperture = 0.1f;
+    float aperture = 0.0f;
     Camera cam = Camera(
         lookFrom,               // lookFrom
         lookAt,                 // lookAt
         Vec3(0, 1, 0),          // up
-        30.0f,                  // vFov
+        40.0f,                  // vFov
         float(nx) / float(ny),  // aspect
         aperture,               // aperture
         distanceToFocus,        // distance to focus

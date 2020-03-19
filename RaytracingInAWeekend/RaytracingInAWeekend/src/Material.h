@@ -14,6 +14,11 @@ public:
         Vec3& attenuation,
         Ray& scattered
     ) const = 0;
+
+    virtual Vec3 Emitted(float u, float v, const Vec3& p)
+    {
+        return Vec3(0.f, 0.f, 0.f);
+    }
 };
 
 class Lambertian : public Material
@@ -63,7 +68,6 @@ public:
         attenuation = m_Albedo;
         return ((scattered.Direction().Dot(hr.normal)) > 0);
     }
-
 
 private:
     Vec3 m_Albedo;

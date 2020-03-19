@@ -61,20 +61,21 @@ Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld, int depth)
     {
         Ray scattered; 
         Vec3 attenuation;
-
+        Vec3 emitted = hr.pMaterial->Emitted(hr.u, hr.v, hr.point);
         // If still have bounces and scatter dir still can get more color
         if (depth < 50 && hr.pMaterial->Scatter(r, hr, attenuation, scattered))
         {
-            return attenuation * GetColor(scattered, pWorld, depth + 1);
+            return emitted + attenuation * GetColor(scattered, pWorld, depth + 1);
         }
         else
         {
-            return Vec3(0.0f, 0.0f, 0.0f);
+            return emitted;
         }
     }
     else
     {
-        return BackgroundColor(r);
+        //return BackgroundColor(r);
+        return Vec3(0.0f, 0.0f, 0.0f);
     }
 }
        

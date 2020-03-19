@@ -17,8 +17,37 @@ struct HitRecord
 class Hittable
 {
 public:
+    virtual ~Hittable() {}
     virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& record) const = 0;
     virtual bool BoundingBox(float t0, float t1, AABB& box) const = 0;
+};
+
+class FlipNormals : public Hittable
+{
+public:
+    FlipNormals(Hittable* pH) : m_pHittable(pH) {}
+    ~FlipNormals() { delete m_pHittable; }
+
+    virtual bool Hit(const Ray& r, float tMin, float tMax, HitRecord& hr) const override
+    {
+        if (m_pHittable->Hit(r, tMin, tMax, hr))
+        {
+            hr.normal = -hr.normal;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    virtual bool BoundingBox(float t0, float t1, AABB& box) const override
+    {
+        return m_pHittable->BoundingBox(t0, t1, box);
+    }
+
+private:
+    Hittable* m_pHittable;
 };
 
 //
