@@ -7,7 +7,7 @@
 #include "XYRect.h"
 #include "XZRect.h"
 #include "YZRect.h"
-
+#include "Box.h"
 
 Hittable* SimpleLight()
 {
@@ -51,7 +51,7 @@ Hittable* SimpleLight()
 
 Hittable* CornellBox()
 {
-    const int numHittable = 6;
+    const int numHittable = 8;
     Hittable** list = new Hittable*[numHittable];
     int i = 0;
 
@@ -73,6 +73,15 @@ Hittable* CornellBox()
     // back wall
     list[i++] = new FlipNormals(new XYRect(0, 555, 0, 555, 555,
         new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f)))));
+    // bopxes 
+    list[i++] = new Box(
+        Vec3(130, 0, 65),
+        Vec3(295, 165, 230),
+        new Lambertian(new ConstantTexture(Vec3(0.23f, 0.43f, 0.73f))));
+    list[i++] = new Box(
+        Vec3(265, 0, -295),
+        Vec3(430, 330, 460),
+        new Lambertian(new ConstantTexture(Vec3(0.43f, 0.23f, 0.73f))));
 
     return new HittableList(list, i);
 }

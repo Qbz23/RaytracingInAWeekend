@@ -98,5 +98,8 @@
     <ClInclude Include="src\YZRect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
