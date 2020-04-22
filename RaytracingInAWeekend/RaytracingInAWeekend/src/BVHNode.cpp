@@ -180,13 +180,13 @@ BVHNode::~BVHNode()
 {
     if (m_pLeft != nullptr)
     {
-        delete m_pLeft;
-        m_pLeft = nullptr;
+        //delete m_pLeft;
+        //m_pLeft = nullptr;
     }
     if (m_pRight != nullptr)
     {
-        delete m_pRight;
-        m_pRight = nullptr;
+        //delete m_pRight;
+        //m_pRight = nullptr;
     }
 }
 

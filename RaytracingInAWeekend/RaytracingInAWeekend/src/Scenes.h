@@ -8,6 +8,8 @@
 #include "XZRect.h"
 #include "YZRect.h"
 #include "Box.h"
+#include "Rotate.h"
+#include "Translate.h"
 
 Hittable* SimpleLight()
 {
@@ -51,7 +53,7 @@ Hittable* SimpleLight()
 
 Hittable* CornellBox()
 {
-    const int numHittable = 7;//8;
+    const int numHittable = 8;
     Hittable** list = new Hittable*[numHittable];
     int i = 0;
 
@@ -73,15 +75,24 @@ Hittable* CornellBox()
     // back wall
     list[i++] = new FlipNormals(new XYRect(0, 555, 0, 555, 555,
         new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f)))));
-    // bopxes 
-    list[i++] = new Box(
-        Vec3(130, 0, 65),
-        Vec3(295, 165, 230),
+    // boxes 
+    Hittable* pBox1 = new Box(
+        Vec3(0, 0, 0),
+        Vec3(165, 330, 165),
         new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f))));
-    list[i++] = new Box(
-        Vec3(265, 0, 295),
-        Vec3(430, 330, 460),
-        new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f))));
+    pBox1 = new RotateY(pBox1, 15.0f);
+    pBox1 = new Translate(pBox1, Vec3(265, 0, 295));
+    list[i++] = pBox1;
 
-    return new HittableList(list, i);
+    Hittable* pBox2 = new Box(
+        Vec3(0, 0, 0),
+        Vec3(165, 165, 165),
+        new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f))));
+    pBox2 = new RotateY(pBox2, -18.f);
+    pBox2 = new Translate(pBox2, Vec3(130, 0, 65));
+    list[i++] = pBox2;
+
+    return new BVHNode(list, i, 0.f, 1.0f);
 }
+
+

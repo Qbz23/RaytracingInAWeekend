@@ -10,8 +10,8 @@
 
 void OutputAnImage()
 {
-    int nx = 256;
-    int ny = 256;
+    int nx = 128;
+    int ny = 128;
     int ns = 500; // num samples
     // Header for ppm file 
     // Declare colors are in ascii, with nx cols and ny rows, and the max color is 255
@@ -20,6 +20,7 @@ void OutputAnImage()
     //Hittable* pWorld = RandomScene();
     //Hittable* pWorld = SimpleLight();
     Hittable* pWorld = CornellBox();
+    //Hittable* pWorld = FinalScene();
 
     //Vec3 lookFrom(13.f, 2.f, 3.f);
     //Vec3 lookAt(0, 1, 0);
@@ -27,6 +28,8 @@ void OutputAnImage()
     //float aperture = 0.1f;       
     Vec3 lookFrom(278, 278, -800);
     Vec3 lookAt(278, 278, 0);
+    //Vec3 lookFrom(478, 278, -600);
+    //Vec3 lookAt(278, 278, 0);
     float distanceToFocus = 10.0f;
     float aperture = 0.0f;
     Camera cam = Camera(

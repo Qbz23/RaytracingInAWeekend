@@ -12,6 +12,13 @@ struct HitRecord
     Material* pMaterial;
     float u;
     float v;
+   
+    inline void SetFaceNormal(const Ray& r, const Vec3& outwardNormal)
+    {
+        bool frontFacing = Dot(r.Direction(), outwardNormal);
+        normal = frontFacing ? outwardNormal : -outwardNormal;
+    }
+
 };
 
 class Hittable
