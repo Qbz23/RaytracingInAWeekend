@@ -6,7 +6,7 @@ class YZRect : public Hittable
 {
 public:
     YZRect() {}
-    ~YZRect() { if (m_pMat != nullptr) delete m_pMat; }
+    ~YZRect() { /*if (m_pMat != nullptr) delete m_pMat;*/ }
     YZRect(float y0, float y1, float z0, float z1, float k, Material* pMat) :
         m_Y0(y0), m_Y1(y1), m_Z0(z0), m_Z1(z1), m_K(k), m_pMat(pMat) {}
 
@@ -25,6 +25,7 @@ public:
             return false;
         }
 
+        hr.t = t;
         hr.u = (y - m_Y0) / (m_Y1 - m_Y0);
         hr.v = (z - m_Z0) / (m_Z1 - m_Z0);
         hr.pMaterial = m_pMat;
