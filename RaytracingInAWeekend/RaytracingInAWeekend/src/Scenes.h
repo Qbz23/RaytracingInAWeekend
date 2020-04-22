@@ -84,10 +84,15 @@ Hittable* CornellBox()
     pBox1 = new Translate(pBox1, Vec3(265, 0, 295));
     list[i++] = pBox1;
 
-    Hittable* pBox2 = new Box(
-        Vec3(0, 0, 0),
-        Vec3(165, 165, 165),
-        new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f))));
+    Hittable* pBox2 =
+        new ConstantMedium(
+            new Box(
+                Vec3(0, 0, 0),
+                Vec3(165, 165, 165),
+                new Lambertian(new ConstantTexture(Vec3(0.73f, 0.73f, 0.73f)))),
+            0.01f,
+            new ConstantTexture(Vec3(1.0f, 0.0f, 1.0f)));
+
     pBox2 = new RotateY(pBox2, -18.f);
     pBox2 = new Translate(pBox2, Vec3(130, 0, 65));
     list[i++] = pBox2;

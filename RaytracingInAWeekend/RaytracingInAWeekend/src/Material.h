@@ -128,3 +128,19 @@ public:
 private:
     float m_RefractionIndex;
 };
+
+class Isotropic : public Material
+{
+public:
+    Isotropic(Texture* pTex) : m_pAlbedo(pTex) {}
+
+    virtual bool Scatter(const Ray& rIn, const HitRecord& hr, Vec3& atteunation, Ray& scattered) const override
+    {
+        scattered = Ray(hr.point, Helpers::RandomPointInUnitSphere(), rIn.Time());
+        atteunation = m_pAlbedo->Value(hr.u, hr.v, hr.point);
+        return true;
+    }
+
+private:
+    Texture* m_pAlbedo;
+};
