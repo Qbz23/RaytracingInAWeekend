@@ -8,7 +8,7 @@
 class ImageTexture : public Texture
 {
 public:
-    ImageTexture() {}
+    ImageTexture() : m_pData(nullptr), m_Width(-1), m_Height(-1) {}
     ImageTexture(const char* filename)
     {
         int comp;

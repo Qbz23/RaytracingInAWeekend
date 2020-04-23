@@ -28,26 +28,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -136,6 +136,7 @@
     <ClInclude Include="src\Box.h" />
     <ClInclude Include="src\BVHNode.h" />
     <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\ConstantMedium.h" />
     <ClInclude Include="src\DiffuseLight.h" />
     <ClInclude Include="src\Helpers.h" />
     <ClInclude Include="src\Hittable.h" />
@@ -145,9 +146,11 @@
     <ClInclude Include="src\RandomScene.h" />
     <ClInclude Include="src\Ray.h" />
     <ClInclude Include="src\RayFunctions.h" />
+    <ClInclude Include="src\Rotate.h" />
     <ClInclude Include="src\Scenes.h" />
     <ClInclude Include="src\Sphere.h" />
     <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Translate.h" />
     <ClInclude Include="src\TutorialParts.h" />
     <ClInclude Include="src\Vec3.h" />
     <ClInclude Include="src\XYRect.h" />

@@ -101,5 +101,14 @@
     <ClInclude Include="src\Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Translate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rotate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConstantMedium.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

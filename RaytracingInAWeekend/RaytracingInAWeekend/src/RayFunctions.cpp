@@ -56,6 +56,13 @@ float RayFunctions::HitSphere(const Vec3& center, float radius, const Ray& r)
 
 Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld, int depth)
 {
+    const int DepthLimit = 50;
+
+    if (depth >= DepthLimit)
+    {
+        return Vec3(0.0f, 0.0f, 0.0f);
+    }
+
     HitRecord hr;
     if (pWorld->Hit(r, 0.01f, std::numeric_limits<float>::max(), hr))
     {
@@ -63,7 +70,7 @@ Vec3 RayFunctions::GetColor(const Ray& r, Hittable* pWorld, int depth)
         Vec3 attenuation;
         Vec3 emitted = hr.pMaterial->Emitted(hr.u, hr.v, hr.point);
         // If still have bounces and scatter dir still can get more color
-        if (depth < 50 && hr.pMaterial->Scatter(r, hr, attenuation, scattered))
+        if (hr.pMaterial->Scatter(r, hr, attenuation, scattered))
         {
             return emitted + attenuation * GetColor(scattered, pWorld, depth + 1);
         }
